@@ -1,0 +1,41 @@
+Slay the Spire
+-Character
+	1. Hp
+	2. Block
+	3. Name
+	4. ID
+-Cards
+	1. Dmg
+	2. Heal
+	3. Block
+	4. Effect
+	5. Type
+		a. Ironcladcard
+		b. Silentcard
+		c. Defectcard
+		d. Watchercard
+		e. Colorlesscard
+		f. Status
+		g. Curse
+-Map
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+-Relic
+	1. ID
+	2. Name
+	3. Effect
+-Potion
+	1. ID
+	2. Name
+	3. Effect
+  4. Slots
+-
