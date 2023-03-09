@@ -17,7 +17,7 @@ Slay the Spire
 		e. Colorlesscard
 		f. Status
 		g. Curse
--Map
+-Encounter
 	1. Random encounter
 		a. Random event
 	2. Enemy encounter
@@ -37,5 +37,20 @@ Slay the Spire
 	1. ID
 	2. Name
 	3. Effect
-  4. Slots
--
+  	4. SlotsNumber
+-class Effect{
+    int Id;
+    
+}
+
+-class Buff{
+    String name;
+    int Duration;
+    
+}
+
+-class Debuff{
+    String name;
+    int Duration;
+    
+}
