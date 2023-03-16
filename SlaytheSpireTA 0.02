@@ -1,0 +1,125 @@
+import java.util.Scanner;
+
+class Character{
+    String CharName;
+    int CharId;
+    int Health;
+    int Block;
+    void BlockReset(int Block){
+        Block=0;
+        return Block;
+    }
+}
+
+class Card{
+    String CardName;
+    int Damage;
+	int Heal;
+	int Block;
+	int EffectId;
+}
+
+class Encounter{
+    int EncounterId;
+    /*
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+	*/
+}
+
+class Relic{
+	int RelicId;
+	String Name;
+	
+}
+
+class Potion{
+	int PotionId;
+	String Name;
+	int EffectId;
+  	int Slot;
+}
+
+class Effect{
+    int Id;
+    void Heal(int hp,int heal){
+        hp+=heal;
+        return hp;
+    }
+    void Damage(int hp,int dmg,int block){
+        if (block==0){
+            hp-=dmg;
+        }
+        else{
+            block-=dmg;
+        }
+        return hp;
+    }
+}
+
+class Buff{
+    String name;
+    int Duration;
+    
+}
+
+class Debuff{
+    String name;
+    int Duration;
+    
+}
+
+class Hand{
+    
+}
+
+class Turn{
+    void EndTurn(){
+        Energy.Reset();
+    }
+}
+
+class Currency{
+    int money;
+    void Buy(int money, int price){
+        money = money-price;
+        return money;
+    }
+    void Sell(int money, int price){
+        money = money+price;
+        return money;
+    }
+}
+
+class Energy{
+    int Energy;
+    int MaxEnergy;
+    void Increase(int Energy,int Cost){
+        Energy=Energy+Cost;
+        return Energy;
+    }
+    void Reduce(int Energy,int Cost){
+        Energy=Energy-Cost;
+        return Energy;
+    }
+    void Reset(int Energy,int Max){
+        Energy=Max;
+        return Energy;
+    }
+}
+
+class SlayTheSpire {
+    public static void main(String[] args) {
+        Character P=new Character();
+        
+    }
+}
