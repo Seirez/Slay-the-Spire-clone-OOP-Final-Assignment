@@ -1,0 +1,181 @@
+abstract class Status {
+    String name;
+    int Duration;
+    int StatusId;
+}
+
+abstract class Card{
+    public String CardName;
+    int Damage;
+	int Heal;
+	int Block;
+	public int EffectId;
+}
+
+abstract class History {
+    abstract History show(String name,int hp);
+}
+
+class Character{
+    public String CharName;
+    public int CharId;
+    int Health;
+    int Block;
+    public int BlockReset(){
+        int Block=0;
+        return Block;
+    }
+}
+
+class Encounter{
+    public int EncounterId;
+    /*
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+	*/
+}
+
+class Relic{
+	public int RelicId;
+	public String Name;
+}
+
+class Potion{
+	public int PotionId;
+	public String Name;
+	int EffectId;
+  	int Slot=3;
+}
+
+class Effect{
+    int Id;
+    public int Heal(int hp,int heal){
+        hp+=heal;
+        return hp;
+    }
+    public int Damage(int hp,int dmg,int block){
+        if (block==0){
+            hp-=dmg;
+        }
+        else{
+            block-=dmg;
+        }
+        return hp;
+    }
+}
+
+class Buff extends Status{
+    
+}
+
+class Debuff extends Status{
+    
+}
+
+class Hand{
+    
+}
+
+class Turn{
+    public class Energy{
+        int Energy;
+        int MaxEnergy;
+        public int Increase(int Energy,int Cost){
+            Energy=Energy+Cost;
+            return Energy;
+        }
+        public int Reduce(int Energy,int Cost){
+            Energy=Energy-Cost;
+            return Energy;
+        }
+        public int Reset(int Max){
+            Energy=Max;
+            return Energy;
+        }
+    }
+}
+
+class Currency{
+    int money;
+    public int Buy(int money, int price){
+        money = money-price;
+        return money;
+    }
+    public int Sell(int money, int price){
+        money = money+price;
+        return money;
+    }
+}
+
+class HealHistory extends History {
+    public History show(String name,int hp) {
+        System.out.println(name+"healed for"+hp);
+        return null;
+    }
+}
+
+class DamageHistory extends History {
+    public History show(String name,int damage) {
+        System.out.println(name+" received "+damage+" damage");
+        return null;
+    }
+}
+
+class SlayTheSpire {
+    public static void main(String[] args) {
+        //Characters
+        Character Ironclad = new Character();
+        Ironclad.CharName = "Ironclad";
+        Ironclad.CharId = 1;
+        Ironclad.Health = 80;
+        
+        Character Silent = new Character();
+        Silent.CharName = "Silent";
+        Silent.CharId = 2;
+        Silent.Health = 70;
+        
+        //Relics
+        Relic BurningBlood = new Relic();
+        BurningBlood.RelicId = 01;
+        BurningBlood.Name = "Burning Blood";
+
+        Relic RingofTheSnake = new Relic();
+        RingofTheSnake.RelicId = 02;
+        RingofTheSnake.Name = "Ring of The Snake";
+        
+        //Buffs
+        Buff Strength = new Buff();
+        Strength.name = "Strength";
+        Strength.StatusId = 1;
+        
+        Buff Dexterity = new Buff();
+        Dexterity.name = "Dexterity";
+        Dexterity.StatusId = 2;
+        
+        Buff Regen = new Buff();
+        Regen.name = "Regen";
+        Regen.StatusId = 3;
+        
+        //Debuffs
+        Debuff Vulnerable = new Debuff();
+        Vulnerable.name = "Vulnerable";
+        Vulnerable.StatusId = 4;
+        
+        Debuff Frail = new Debuff();
+        Frail.name = "Frail";
+        Frail.StatusId = 5;
+        
+        Debuff Weak = new Debuff();
+        Weak.name = "Weak";
+        Weak.StatusId = 6;
+    }
+}
