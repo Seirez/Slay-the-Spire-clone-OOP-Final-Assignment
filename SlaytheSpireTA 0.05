@@ -1,0 +1,236 @@
+import java.util.Scanner;
+
+abstract class Status {
+    String name;
+    int Duration;
+}
+
+abstract class Card{
+    public String CardName;
+    int Damage;
+	int Heal;
+	int Block;
+}
+
+abstract class History {
+    abstract History show(String name,int hp);
+}
+
+class Character{
+    private String CharName;
+    private int Health;
+    int Block;
+    
+    public int BlockReset(){
+        int Block=0;
+        return Block;
+    }
+    void setCharName(String Name){
+        this.CharName = Name;
+    }
+    String getCharName(){
+        return this.CharName;
+    }
+
+    void setHealth(int hp){
+        this.Health = hp;
+    }
+    int getHealth(){
+        return this.Health;
+    }
+
+    public void ShowDesc(){
+        System.out.println("Name : "+this.getCharName());
+        System.out.println("HP : "+this.getHealth());
+    }
+}
+
+class Encounter{
+    /*
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+	*/
+}
+
+class Relic{
+	private String RName;
+    
+    void setRName(String name){
+        this.RName = name;
+    }
+    String getRName(){
+        return this.RName;
+    }
+}
+
+class Potion{
+	private String PName;
+  	int Slot=3;
+
+    void setPName(String name){
+        this.PName = name;
+    }
+    String getPName(){
+        return this.PName;
+    }
+}
+
+class Effect{
+    public int Heal(int hp,int heal){
+        hp+=heal;
+        return hp;
+    }
+    public int Damage(int hp,int dmg,int block){
+        if (block==0){
+            hp-=dmg;
+        }
+        else{
+            block-=dmg;
+        }
+        return hp;
+    }
+}
+
+class Buff extends Status{
+    
+}
+
+class Debuff extends Status{
+    
+}
+
+class Hand{
+    
+}
+
+class Turn{
+    public class Energy{
+        int Energy;
+        int MaxEnergy;
+        public int Increase(int Energy,int Cost){
+            Energy=Energy+Cost;
+            return Energy;
+        }
+        public int Reduce(int Energy,int Cost){
+            Energy=Energy-Cost;
+            return Energy;
+        }
+        public int Reset(int Max){
+            Energy=Max;
+            return Energy;
+        }
+    }
+}
+
+class Currency{
+    int money;
+    public int Buy(int money, int price){
+        money = money-price;
+        return money;
+    }
+    public int Sell(int money, int price){
+        money = money+price;
+        return money;
+    }
+}
+
+class HealHistory extends History {
+    public History show(String name,int hp) {
+        System.out.println(name+"healed for"+hp);
+        return null;
+    }
+}
+
+class DamageHistory extends History {
+    public History show(String name,int damage) {
+        System.out.println(name+" received "+damage+" damage");
+        return null;
+    }
+}
+
+class SlayTheSpire {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        //Characters
+        Character Ironclad = new Character();
+        Ironclad.setCharName("Ironclad");
+        Ironclad.setHealth(80);
+        
+        Character Silent = new Character();
+        Silent.setCharName("Silent");
+        Silent.setHealth(70);
+        
+        //Relics
+        Relic BurningBlood = new Relic();
+        BurningBlood.setRName("Burning Blood");
+
+        Relic RingofTheSnake = new Relic();
+        RingofTheSnake.setRName("Ring of The Snake");
+        
+        //Buffs
+        Buff Strength = new Buff();
+        Strength.name = "Strength";
+        
+        Buff Dexterity = new Buff();
+        Dexterity.name = "Dexterity";
+        
+        Buff Regen = new Buff();
+        Regen.name = "Regen";
+        
+        //Debuffs
+        Debuff Vulnerable = new Debuff();
+        Vulnerable.name = "Vulnerable";
+        
+        Debuff Frail = new Debuff();
+        Frail.name = "Frail";
+        
+        Debuff Weak = new Debuff();
+        Weak.name = "Weak";
+
+        System.out.println("1. Pilih Character");
+        //System.out.println("2. ");
+        //System.out.println("3. ");
+        System.out.println("Pilih:");
+        int key1 = in.nextInt();
+        switch (key1) {
+            case 1:
+            System.out.println("1. "+Ironclad.getCharName());
+            System.out.println("2. "+Silent.getCharName());
+            System.out.println();
+            System.out.println("Pilih:");
+            int key2 = in.nextInt();
+            switch (key2) {
+                case 1:
+                    Ironclad.ShowDesc();
+                    break;
+
+                case 2:
+                    Silent.ShowDesc();
+                    break;
+
+                default:
+                    System.out.println("Unknown Command");
+                    break;
+                }
+                break;
+
+            case 2:
+                System.out.println();
+                break;
+
+            default:
+                System.out.println("Unknown Command");
+                break;
+        }
+    }
+}
