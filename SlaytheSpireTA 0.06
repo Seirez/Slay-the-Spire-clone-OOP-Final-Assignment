@@ -204,23 +204,24 @@ class DamageHistory extends History {
     }
 }
 
-// Method konfirmasi
-boolean Confirm(){
-    // inisialisasi
-    String temp;
-
-    // Meminta keyakinan dengan scanner
-    System.out.println("Are you sure?(y/n)");
-    temp = in.nextLine;
-    if (temp=='y'||temp=='Y'){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
+// Main class (Runner)
 class SlayTheSpire {
+	// Method konfirmasi
+	boolean Confirm(){
+	    // inisialisasi
+	    String temp;
+
+	    // Meminta keyakinan dengan scanner
+	    System.out.println("Are you sure?(y/n)");
+	    temp = in.nextLine;
+	    if (temp=='y'||temp=='Y'){
+		return true;
+	    }
+	    else{
+		return false;
+	    }
+	}
+	
     public static void main(String[] args) {
         // inisialisasi
         // Scanner
