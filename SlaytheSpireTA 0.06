@@ -2,8 +2,20 @@ import java.util.*;
 
 /*
 Slay the Spire
-1. Bisa memilih character
-2. Bisa menggunakan card
+Menu
+A. Play
+    Pilih character
+        Map (encounters)
+            Map randomization
+            Pilih encounter
+            Battle
+                Pilih card (action)
+                Energy consumption
+                End turn
+                Enemy action
+                End reward
+B. Settings
+C. Exit
 */
 
 // Abstract untuk status effect (buff/debuff)
