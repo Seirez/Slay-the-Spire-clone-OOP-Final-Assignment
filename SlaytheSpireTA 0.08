@@ -1,0 +1,456 @@
+import java.util.*;
+
+/*
+Slay the Spire
+Menu
+A. Play
+    Pilih character
+        Map (encounters)
+            Map randomization
+                Random event
+                Enemy encounter
+                    Normal
+                    Boss
+                    Elite
+                Peaceful encounter
+                    Trader
+                    Chest
+                    Campfire
+
+            Pilih encounter
+            
+            Battle
+                Pilih card (action)
+                    Normal card
+                    Colorless card
+                    Status card
+                    Curse card
+                Energy consumption
+                End turn
+                Enemy action
+                End reward
+B. Settings
+C. Exit
+*/
+
+// Abstract untuk status effect (buff/debuff)
+abstract class Status {
+    // inisialisasi
+    String name;
+    int Duration;
+}
+
+// Abstract untuk card
+abstract class Card{
+    // inisialisasi
+    String CardName;
+    int Damage = 0;
+	int Heal = 0;
+	int Block = 0;
+    abstract Card show();
+}
+
+// Abstract untuk history(showcase polymorphism)
+abstract class History {
+    // Method abstract = harus dimiliki sub-class
+    abstract History show();
+}
+
+// Class character
+class Character{
+    // inisialisasi
+    private String CharName;
+    private int Health;
+    int Cblock;
+    
+    // Reset block
+    public int BlockReset(){
+        int Block=0;
+        return Block;
+    }
+
+    // Mengganti/memberi nama
+    void setCharName(String Name){
+        this.CharName = Name;
+    }
+    // Mengambil nama
+    String getCharName(){
+        return this.CharName;
+    }
+
+    // Mengganti/memberi hp
+    void setHealth(int hp){
+        this.Health = hp;
+    }
+    // Mengambil hp
+    int getHealth(){
+        return this.Health;
+    }
+    
+    // Menghitung jumlah heal yang diterima
+    public int Heal(int hp,int heal){
+        hp+=heal;
+        return hp;
+    }
+
+    // Menghitung jumlah damage yang diterima
+    public int Damage(int hp,int dmg,int block){
+        if (block==0){
+            hp-=dmg;
+        }
+        else{
+            block-=dmg;
+            if (block<0){
+                block=0;
+            }
+            dmg-=block;
+            hp-=dmg;
+        }
+        return hp;
+    }
+
+    // Memperlihatkan deskripsi character
+    public void ShowDesc(){
+        System.out.println("Name : "+this.getCharName());
+        System.out.println("HP : "+this.getHealth());
+        System.out.println("Block : "+this.Cblock);
+    }
+}
+
+// Class enemy inherit class character
+class Enemy extends Character{
+    // Override method
+    public void ShowDesc(){
+        System.out.println(this.getCharName());
+        System.out.println("HP : "+this.getHealth());
+        System.out.println("Block : "+this.Cblock);
+    }
+}
+
+/*
+// Class encounter
+class Encounter{
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+}
+*/
+
+// Class card temp
+class Ncard extends Card{
+    public Card show() {
+        System.out.println(this.CardName);
+        if(Damage!=0){
+            System.out.println("Deal "+this.Damage+" damage");
+        }
+        if(Heal!=0){
+            System.out.println("Heal "+this.Heal+" HP");
+        }
+        if(Block!=0){
+            System.out.println("Gain "+this.Block+" Block");
+        }
+        return null;
+    }
+}
+
+// Class relic
+class Relic{
+    // inisialisasi
+	private String RName;
+
+    // Mengganti/memberi nama relic
+    void setRName(String name){
+        this.RName = name;
+    }
+    // Mengambil nama relic
+    String getRName(){
+        return this.RName;
+    }
+}
+
+// Class potion
+class Potion{
+    // inisialisasi
+	private String PName;
+  	int Slot=3;
+
+    // Mengganti/memberi nama potion
+    void setPName(String name){
+        this.PName = name;
+    }
+    // Mengambil nama potion
+    String getPName(){
+        return this.PName;
+    }
+}
+
+// Class buff inherit dari Status
+class Buff extends Status{
+    
+}
+
+// Class buff inherit Status
+class Debuff extends Status{
+    
+}
+
+// Class hand untuk kartu yang dapat digunakan
+// class Hand{
+
+// }
+
+// Class energy
+class Energy{
+    // inisialisasi
+    int Energy;
+    int MaxEnergy;
+
+    // Method energy bertambah
+    int Increase(int Energy,int Cost){
+        Energy=Energy+Cost;
+        return Energy;
+    }
+    // Method energy berkurang
+    int Reduce(int Energy,int Cost){
+        Energy=Energy-Cost;
+        return Energy;
+    }
+    // Method energy reset
+    int Reset(int Max){
+        Energy=Max;
+        return Energy;
+    }
+}
+
+// Class currency
+class Currency{
+    // inisialisasi
+    int money;
+
+    // Menghitung pembelian
+    public int Buy(int money, int price){
+        money = money-price;
+        return money;
+    }
+    // Menghitung penjualan
+    public int Sell(int money, int price){
+        money = money+price;
+        return money;
+    }
+}
+
+// Class HealHistory inherit History
+class HealHistory extends History {
+    public History show(String name,int hp) {
+        System.out.println(name+"healed for"+hp);
+        return null;
+    }
+}
+
+// Class DamageHistory inherit History
+class DamageHistory extends History {
+    public History show(String name,int damage) {
+        System.out.println(name+" received "+damage+" damage");
+        return null;
+    }
+}
+
+// Main class (Runner)
+class SlayTheSpire {
+	// Method konfirmasi
+	boolean Confirm(){
+	    // inisialisasi
+	    String temp;
+
+	    // Meminta keyakinan dengan scanner
+	    System.out.println("Are you sure?(y/n)");
+	    temp = in.nextLine;
+	    if (temp=='y'||temp=='Y'){
+		return true;
+	    }
+	    else{
+		return false;
+	    }
+	}
+	
+    public static void main(String[] args) {
+        // inisialisasi
+        // Scanner
+        Scanner in = new Scanner(System.in);
+
+        //Characters
+        Character Ironclad = new Character();
+        Ironclad.setCharName("Ironclad");
+        Ironclad.setHealth(80);
+        
+        Character Silent = new Character();
+        Silent.setCharName("Silent");
+        Silent.setHealth(70);
+
+        //Enemies
+        Enemy Enemy1 = new Enemy();
+        Enemy1.setCharName("Enemy1");
+        Enemy1.setHealth(30);
+        
+        //Relics
+        Relic R1 = new Relic();
+        R1.setRName("Burning Blood");
+
+        Relic R2 = new Relic();
+        R2.setRName("Ring of The Snake");
+        
+        //Buffs
+        Buff B1 = new Buff();
+        B1.name = "Strength";
+        
+        Buff B2 = new Buff();
+        B2.name = "Dexterity";
+        
+        Buff B3 = new Buff();
+        B3.name = "Regen";
+        
+        //Debuffs
+        Debuff DB1 = new Debuff();
+        DB1.name = "Vulnerable";
+        
+        Debuff DB2 = new Debuff();
+        DB2.name = "Frail";
+        
+        Debuff DB3 = new Debuff();
+        DB3.name = "Weak";
+
+        //Card
+        Ncard Card1 = new Ncard();
+        Card1.CardName = "Attack";
+        Card1.Damage = 15;
+
+        Ncard Card2 = new Ncard();
+        Card2.CardName = "Heal & Defend";
+        Card2.Heal = 10;
+        Card2.Block = 10;
+
+        //Energy
+        Energy turn = new Energy();
+        turn.MaxEnergy = 3;
+
+        // Menu dalam loop
+        for(int i = 0; i<1;){
+            // Menu pilihan
+            System.out.print("\n");
+            System.out.println("-----------------------------");
+            System.out.println("1. Pilih Character");
+            System.out.println(". ");
+            System.out.println("3. Exit");
+            System.out.println("-----------------------------");
+
+            // Pilihan diminta dan diterima dengan inputan scanner
+            System.out.println("Pilih:");
+            int key1 = in.nextInt();
+            System.out.print("\n");
+
+            // Pilihan dengan menggunakan switch
+            switch (key1) {
+                case 1:
+                System.out.println("1. "+Ironclad.getCharName());
+                System.out.println("2. "+Silent.getCharName());
+                System.out.print("\n");
+                System.out.println("Pilih:");
+                int key2 = in.nextInt();
+                switch (key2) {
+                    case 1:
+                        Ironclad.ShowDesc();
+                        System.out.println("\n\t\tEnemy Encounter");
+                        for(int y = 0; y<1;){
+                            System.out.print("\n");
+                            System.out.println("Player");
+                            Ironclad.ShowDesc();
+                            System.out.print("\n");
+                            Enemy1.ShowDesc();
+                            System.out.print("\n");
+                            System.out.println("Energy : "+turn.Energy);
+
+                            System.out.print("\n");
+                            System.out.println("-----------------------------");
+                            System.out.println("1. Pilih Card");
+                            System.out.println("2. End Turn");
+                            System.out.println("3. Berhenti");
+                            System.out.println("-----------------------------");
+                            System.out.println("Pilih:");
+                            int key3 = in.nextInt();
+                            switch (key3) {
+                                case 1:
+                                    System.out.print("\n");
+                                    System.out.println("-----------------------------");
+                                    System.out.print("1. ");
+                                    Card1.show();
+                                    System.out.print("2. ");
+                                    Card2.show();
+                                    System.out.println("3. Cancel");
+                                    System.out.println("-----------------------------");
+                                    System.out.println("Pilih:");
+                                    int key4 = in.nextInt();
+                                    switch (key4) {
+                                        case 1:
+                                            
+                                            break;
+                                        case 2:
+                                            
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                break;
+                                case 2:
+                                    
+                                    break;
+                                
+                                case 3:
+                                    y++;
+                                    break;
+                            
+                                default:
+                                    System.out.println("Unknown Command");
+                                    break;
+                            }
+                        }
+                        break;
+
+                    case 2:
+                        Silent.ShowDesc();
+                        System.out.println("\n\t\tEnemy Encounter");
+                        System.out.println("Player");
+                        Silent.ShowDesc();
+                        System.out.print("\n");
+                        Enemy1.ShowDesc();
+                        System.out.println("Pilih:");
+                        break;
+                        
+                    default:
+                        System.out.println("Unknown Command");
+                        break;
+                    }
+                    break;
+
+                case 2:
+                    System.out.println();
+                    break;
+
+                case 3:
+                    i++;
+                    break;
+
+                default:
+                    System.out.println("Unknown Command");
+                    break;
+            }
+        }
+    }
+}
