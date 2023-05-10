@@ -1,0 +1,591 @@
+import java.util.Scanner;
+
+/*
+Slay the Spire
+Menu
+A. Play
+    -Pilih character
+        -Map (encounters)
+            -Map randomization
+                -Random event
+                -Enemy encounter
+                    -Normal
+                    -Boss
+                    -Elite
+                -Peaceful encounter
+                    -Trader
+                    -Chest
+                    -Campfire
+
+            -Pilih encounter
+            
+            -Battle
+                -Pilih card (action)
+                    -Normal card
+                    -Colorless card
+                    -Status card
+                    -Curse card
+                -Energy consumption
+                -End turn
+                -Enemy action
+                -End reward
+B. Settings
+C. Exit
+*/
+
+// Abstract untuk status effect (buff/debuff)
+abstract class Status {
+    // inisialisasi
+    String name;
+    int Duration;
+}
+
+// Abstract untuk card
+abstract class Card{
+    // inisialisasi
+    int CardCost = 0;
+    String CardName;
+    int Damage = 0;
+	int Heal = 0;
+	int Block = 0;
+
+    // Method abstract = harus dimiliki sub-class
+    abstract Card show();
+}
+
+// Class character
+class Character{
+    // inisialisasi
+    private String CharName;
+    private int Health;
+    int Cblock;
+    
+    // Reset block
+    public int BlockReset(){
+        int Block=0;
+        return Block;
+    }
+
+    // Mengganti/memberi nama
+    void setCharName(String Name){
+        this.CharName = Name;
+    }
+    // Mengambil nama
+    String getCharName(){
+        return this.CharName;
+    }
+
+    // Mengganti/memberi hp
+    void setHealth(int hp){
+        this.Health = hp;
+    }
+    // Mengambil hp
+    int getHealth(){
+        return this.Health;
+    }
+    
+    // Menghitung jumlah heal yang diterima
+    public int heal(int hp,int heal){
+        hp+=heal;
+        return hp;
+    }
+
+    // Menghitung jumlah damage yang diterima
+    public int damage(int hp,int dmg,int block){
+        if (block==0){
+            hp-=dmg;
+        }
+        else{
+            block-=dmg;
+            if (block<0){
+                block=0;
+            }
+            dmg-=block;
+            hp-=dmg;
+        }
+        return hp;
+    }
+
+    // Memperlihatkan deskripsi character
+    public void showDesc(){
+        System.out.println("Player\t: "+this.getCharName());
+        System.out.println("HP  \t: "+this.getHealth());
+        System.out.println("Block\t: "+this.Cblock);
+    }
+}
+
+// Class enemy inherit class character
+class Enemy extends Character{
+    // Override method
+    // Memperlihatkan deskripsi enemy
+    public void showDesc(){
+        System.out.println("Enemy\t: "+this.getCharName());
+        System.out.println("HP  \t: "+this.getHealth());
+        System.out.println("Block\t: "+this.Cblock);
+    }
+}
+
+/*
+// Class encounter
+class Encounter{
+	1. Random encounter
+		a. Random event
+	2. Enemy encounter
+		a. Normal
+		b. Boss
+		c. Elite
+	3. Peaceful encounter
+		a. Trader
+		b. Chest
+		c. Campfire
+	4. Events
+}
+*/
+
+// Class normal card
+class Ncard extends Card{
+    // Memperlihatkan deskripsi card
+    public Card show() {
+        System.out.println("("+this.CardCost+") "+this.CardName);
+
+        // Hanya di-eksekusi bila tidak 0
+        if(Damage!=0){
+            System.out.println("Deal "+this.Damage+" damage");
+        }
+        if(Heal!=0){
+            System.out.println("Heal "+this.Heal+" HP");
+        }
+        if(Block!=0){
+            System.out.println("Gain "+this.Block+" Block");
+        }
+        return null;
+    }
+
+    // Overloading method
+    // Show current energy
+    public void showHistory(int energy) {
+        System.out.println("Energy : "+energy);
+    }
+
+    // Show damage dealt
+    public void showHistory(String name,int damage) {
+        System.out.println(name+" deals "+damage+" damage");
+    }
+
+    // Show healing amount
+    public void showHistory(String name,int hp,int heal) {
+        System.out.println(name+" healed for "+heal+" HP to "+hp+" HP");
+    }
+
+    // Show blocking amount
+    public void showHistory(int cblock, int block) {
+        System.out.println("Block increased by "+block+" to "+cblock+" Block");
+    }
+}
+
+// Class relic
+class Relic{
+    // inisialisasi
+	private String RName;
+
+    // Mengganti/memberi nama relic
+    void setRName(String name){
+        this.RName = name;
+    }
+    // Mengambil nama relic
+    String getRName(){
+        return this.RName;
+    }
+}
+
+// Class potion
+class Potion{
+    // inisialisasi
+	private String PName;
+  	int Slot=3;
+
+    // Mengganti/memberi nama potion
+    void setPName(String name){
+        this.PName = name;
+    }
+    // Mengambil nama potion
+    String getPName(){
+        return this.PName;
+    }
+}
+
+// Class buff inherit dari Status
+class Buff extends Status{
+    
+}
+
+// Class buff inherit Status
+class Debuff extends Status{
+    
+}
+
+// Class hand untuk kartu yang dapat digunakan
+// class Hand{
+
+// }
+
+// Class energy
+class Energy{
+    // inisialisasi
+    int Energy;
+    int MaxEnergy;
+
+    // Method energy bertambah
+    int increase(int Energy,int Cost){
+        Energy=Energy+Cost;
+        return Energy;
+    }
+    // Method energy berkurang
+    int reduce(int Energy,int Cost){
+        Energy=Energy-Cost;
+        return Energy;
+    }
+    // Method energy reset
+    int reset(int Max){
+        Energy=Max;
+        return Energy;
+    }
+}
+
+// Class currency
+class Currency{
+    // inisialisasi
+    int money;
+
+    // Menghitung pembelian
+    public int buy(int money, int price){
+        money = money-price;
+        return money;
+    }
+    // Menghitung penjualan
+    public int sell(int money, int price){
+        money = money+price;
+        return money;
+    }
+}
+
+// Class Menu
+class Menu{
+    // inisialisasi
+    // Scanner
+    Scanner in = new Scanner(System.in);
+
+    //Menampilkan Main Menu
+    int MainMenu(Character Ironclad, Character Silent){
+        // Menu dalam loop
+        for(int i = 0; i<1;){
+            // Menunjukkan pilihan
+            System.out.print("\n");
+            System.out.println("-----------------------------");
+            System.out.println("1. Pilih Character");
+            System.out.println("2. -");
+            System.out.println("3. Exit");
+            System.out.println("-----------------------------");
+
+            // Pilihan diminta dan diterima dengan inputan scanner
+            System.out.println("Pilih:");
+            int key1 = in.nextInt();
+            System.out.print("\n");
+
+            // Pilihan dengan menggunakan switch
+            switch (key1) {
+                case 1:
+                // Menunjukkan pilihan
+                System.out.print("\n");
+                System.out.println("-----------------------------");
+                System.out.println("1. "+Ironclad.getCharName());
+                System.out.println("2. "+Silent.getCharName());
+                System.out.println("-----------------------------");
+
+                // Pilihan diminta dan diterima dengan inputan scanner
+                System.out.println("Pilih:");
+                int key2 = in.nextInt();
+
+                // Pilihan dengan menggunakan switch
+                switch (key2) {
+                    case 1:
+                        Ironclad.showDesc();
+                        System.out.println("\n\tEnemy Encounter");
+                        i++;
+                        return 1;
+
+                    case 2:
+                        Silent.showDesc();
+                        System.out.println("\n\t\tEnemy Encounter");
+                        i++;
+                        return 2;
+                        
+                    default:
+                        System.out.println("Unknown Command");
+                        break;
+                    }
+                    return 0;
+
+                case 2:
+                    System.out.println();
+                    return 0;
+
+                case 3:
+                    i++;
+                    return 0;
+
+                default:
+                    System.out.println("Unknown Command");
+                    break;
+            }
+        }
+        return 0;
+    }
+
+    //Menampilkan menu battle
+    void Battle(Character player, Energy turn, Enemy enemy, Ncard card1, Ncard card2, Ncard ecard){
+        // Menu dalam loop
+        for(int y = 0; y<1;){
+
+            // Cek hp player dan enemy
+            if(player.getHealth()<=0 || enemy.getHealth()<=0){
+                y++;
+                System.out.println("Congratulations you've reached the end of the current development!");
+                System.out.println("In other words you've either killed the enemy or managed to get yourself killed!");
+                System.out.print("\n");
+            }
+
+            else{
+                // Menunjukkan deskripsi player dan enemy
+                System.out.print("\n");
+                player.showDesc();
+                System.out.print("\n");
+                enemy.showDesc();
+                System.out.print("\n");
+
+                // Menunjukkan pilihan
+                System.out.println("Energy : "+turn.Energy);
+                System.out.println("-----------------------------");
+                System.out.println("1. Pilih Card");
+                System.out.println("2. End Turn");
+                System.out.println("3. Exit Game");
+                System.out.println("-----------------------------");
+
+                // Pilihan diminta dan diterima dengan inputan scanner
+                System.out.println("Pilih:");
+                int key3 = in.nextInt();
+
+                // Pilihan dengan menggunakan switch
+                switch (key3) {
+                    case 1:
+                        // Menunjukkan pilihan
+                        System.out.print("\n");
+                        System.out.println("-----------------------------");
+
+                        // Menunjukkan deskripsi card
+                        System.out.print("1. ");
+                        card1.show();
+                        System.out.print("2. ");
+                        card2.show();
+
+                        System.out.println("3. Cancel");
+                        System.out.println("-----------------------------");
+
+                        // Pilihan diminta dan diterima dengan inputan scanner
+                        System.out.println("Pilih:");
+                        int key4 = in.nextInt();
+                        System.out.print("\n");
+
+                        // Pilihan dengan menggunakan switch
+                        switch (key4) {
+                            case 1:
+                                // Cek apa jumlah energy yang dimiliki cukup
+                                if (turn.Energy>=card1.CardCost){
+                                    // Pemberitahuan efek card (damage)
+                                    card1.showHistory(player.getCharName(),card1.Damage);
+                                    
+                                    // Kalkulasi efek card
+                                    enemy.setHealth(enemy.damage(enemy.getHealth(),card1.Damage,enemy.Cblock));
+                                    turn.Energy=turn.reduce(turn.Energy,card1.CardCost);
+
+                                    // Pemberitahuan sisa energy setelah digunakan
+                                    card1.showHistory(turn.Energy);
+                                }
+
+                                // Pemberitahuan energy tidak cukup
+                                else{
+                                    System.out.println("Not enough energy");
+                                }
+                                break;
+                            case 2:
+                                // Cek apa jumlah energy yang dimiliki cukup
+                                if (turn.Energy>=card2.CardCost){
+                                    // Pemberitahuan efek card (heal & block)
+                                    card2.showHistory(player.getCharName(),player.getHealth(),card2.Heal);
+                                    card2.showHistory(player.Cblock,card2.Block);
+
+                                    // Kalkulasi efek card
+                                    player.setHealth(player.heal(player.getHealth(),card2.Heal));
+                                    player.Cblock=player.Cblock+card2.Block;
+                                    turn.Energy=turn.reduce(turn.Energy,card2.CardCost);
+
+                                    // Pemberitahuan sisa energy setelah digunakan
+                                    card1.showHistory(turn.Energy);
+                                }
+
+                                // Pemberitahuan energy tidak cukup
+                                else{
+                                    System.out.println("Not enough energy");
+                                }
+                                break;
+                            default:
+                                System.out.println("Unknown Command");
+                                break;
+                        }
+                        break;
+                    case 2:
+                        // Turn di-akhiri (energy di-reset menjadi penuh)
+                        turn.reset(turn.MaxEnergy);
+
+                        // Enemy mendapat giliran (menyerang balik)
+                        player.setHealth(player.damage(player.getHealth(),ecard.Damage,player.Cblock));
+                        ecard.showHistory(enemy.getCharName(),ecard.Damage);
+                        break;
+                    
+                    case 3:
+                        y++;
+                        break;
+                
+                    default:
+                        System.out.println("Unknown Command");
+                        break;
+                }
+            }
+        }
+    }
+
+    // Method konfirmasi
+	boolean Confirm(){
+	    // inisialisasi
+	    String temp;
+
+	    // Meminta keputusan dengan scanner
+	    System.out.println("Are you sure?(y/n)");
+	    temp = in.nextLine;
+	    if (temp=="y"||temp=="Y"){
+		return true;
+	    }
+	    else{
+		return false;
+	    }
+	}
+}
+
+// Main class (Runner)
+class SlayTheSpire {
+    public static void main(String[] args) {
+        // inisialisasi
+        // Scanner
+        Scanner inmain = new Scanner(System.in);
+
+        // Characters
+        Character Ironclad = new Character();
+        Ironclad.setCharName("Ironclad");
+        Ironclad.setHealth(80);
+        
+        Character Silent = new Character();
+        Silent.setCharName("Silent");
+        Silent.setHealth(70);
+
+        // Enemies
+        Enemy Enemy1 = new Enemy();
+        Enemy1.setCharName("Enemy1");
+        Enemy1.setHealth(30);
+        
+        // Relics
+        Relic R1 = new Relic();
+        R1.setRName("Burning Blood");
+
+        Relic R2 = new Relic();
+        R2.setRName("Ring of The Snake");
+        
+        // Buffs
+        Buff B1 = new Buff();
+        B1.name = "Strength";
+        
+        Buff B2 = new Buff();
+        B2.name = "Dexterity";
+        
+        Buff B3 = new Buff();
+        B3.name = "Regen";
+        
+        // Debuffs
+        Debuff DB1 = new Debuff();
+        DB1.name = "Vulnerable";
+        
+        Debuff DB2 = new Debuff();
+        DB2.name = "Frail";
+        
+        Debuff DB3 = new Debuff();
+        DB3.name = "Weak";
+
+        // Card
+        Ncard Card1 = new Ncard();
+        Card1.CardName = "Attack";
+        Card1.Damage = 8;
+        Card1.CardCost = 1;
+
+        Ncard Card2 = new Ncard();
+        Card2.CardName = "Heal & Defend";
+        Card2.Heal = 10;
+        Card2.Block = 10;
+        Card2.CardCost = 2;
+
+        Ncard enemyaction = new Ncard();
+        enemyaction.CardName = "Enemy Action";
+        enemyaction.Damage = 10;
+
+        // Energy
+        Energy turn = new Energy();
+        turn.Energy= 3;
+        turn.MaxEnergy = 3;
+
+        // Membuka main menu
+        Menu Run = new Menu();
+
+        // Loop menu
+        for(int a=0;a<1;){
+            // Masuk main menu (pemilihan character)
+            int check = Run.MainMenu(Ironclad,Silent);
+
+            // Cek pilihan
+            if (check==1){
+                // Memilih character Ironclad
+                Run.Battle(Ironclad,turn,Enemy1,Card1,Card2,enemyaction);
+            }
+            else if (check==2){
+                // Memilih character Silent
+                Run.Battle(Silent,turn,Enemy1,Card1,Card2,enemyaction);
+            }
+            else{
+                // Tidak memilih character (Exit)
+                System.out.print("\n");
+                System.out.println("Program ends");
+            }
+
+            // Setelah preview battle
+            // Meminta keputusan dengan scanner
+            System.out.println("Try again?(y/n)");
+            String again = inmain.nextLine();
+
+            // Program tidak berhenti bila meng-input 'y'
+            if (again=="y"||again=="Y"){}
+
+            // Program berhenti bila tidak meng-input 'y'
+            else{
+                a++;
+                System.out.println("Program ends");;
+            }
+        }
+    }
+}
