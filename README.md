@@ -1,9 +1,3 @@
-# PBO-OOP
-use case
-choose character
-fight:
-  choose card to use
-  choose enemy to use the card to
-  energy
-  end turn
-  enemy turn
+# Slay the Spire clone
+This is a clone for the game 'Slay the Spire' made for a final assignment from college.
+Mainly use Indonesian language for the comments.
