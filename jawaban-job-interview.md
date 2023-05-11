@@ -2,20 +2,20 @@
 ![Screenshot (2)](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment-/assets/94272100/15856494-5dfc-4c88-b4d5-b6dc93c58169)
 
 # No 2
--Main menu
-    -Play
-        -Pilih character
-                -Battle
-                    -Pilih card (action)
-                        -Attack (damage)
-                        -Heal
-                        -Block
-                        -Energy consumption
-                    -End turn
-                        -Energy reset
-                        -Enemy action
-                    -Battle end (player/enemy death)
-    -Exit
+- Main menu
+    - Play
+        - Pilih character
+            - Battle
+                - Pilih card (action)
+                    - Attack (damage)
+                    - Heal
+                    - Block
+                    - Energy consumption
+                - End turn
+                    - Energy reset
+                    - Enemy action
+                - Battle end (player/enemy death)
+    - Exit
 
 # No 3
 Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam paradigma ini dibungkus dalam kelas-kelas.
@@ -33,39 +33,39 @@ Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam p
 
 
 # No 7
-A. Play
-    -Pilih character
-        -Pilih ascension (difficulty)
-            -Map (encounters)
-                -Map randomization
-                    -Random event
-                    -Enemy encounter
-                        -Normal
-                        -Boss
-                        -Elite
-                    -Peaceful encounter
-                        -Trader
-                        -Chest
-                        -Campfire
+- Play
+    - Pilih character
+        - Pilih ascension (difficulty)
+            - Map (encounters)
+                - Map randomization
+                    - Random event
+                    - Enemy encounter
+                        - Normal
+                        - Boss
+                        - Elite
+                    - Peaceful encounter
+                        - Trader
+                        - Chest
+                        - Campfire
 
-                -Pilih encounter
+                - Pilih encounter
 
-                -Battle
-                    -Pilih card (action)
-                        -Normal card
-                        -Colorless card
-                        -Status card
-                        -Curse card
-                    -Energy consumption
-                    -End turn
-                        -Energy reset
-                        -Block reset (to 0)
-                        -Enemy action
-                    -Battle end (Reward)
+                - Battle
+                    - Pilih card (action)
+                        - Normal card
+                        - Colorless card
+                        - Status card
+                        - Curse card
+                    - Energy consumption
+                    - End turn
+                        - Energy reset
+                        - Block reset (to 0)
+                        - Enemy action
+                    - Battle end (Reward)
 
-                -Campaign end (Unlocking new things)
-B. Settings
-C. Exit
+                - Campaign end (Unlocking new things)
+- Settings
+- Exit
 
 # No 8
 
