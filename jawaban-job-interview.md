@@ -8,7 +8,7 @@
 Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam paradigma ini dibungkus dalam kelas-kelas.
 
 # No 4
-
+![image](https://github.com/Seirez/PBO-OOP/assets/94272100/291f8040-688c-4b8f-97c5-ce973b50259a)
 
 # No 5
 
