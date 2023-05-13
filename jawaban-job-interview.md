@@ -1,5 +1,6 @@
 # No 1
-![Screenshot (2)](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment-/assets/94272100/15856494-5dfc-4c88-b4d5-b6dc93c58169)
+![no1](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/6dfa1345-3543-4a40-8e83-7198f36bcd3f)
+
 
 # No 2
 - Main menu
@@ -21,15 +22,17 @@
 Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam paradigma ini dibungkus dalam kelas-kelas.
 
 # No 4
-![image](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment-/assets/94272100/0f5347a1-fa0a-4996-a456-ea5eeca71aab)
+![no4](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/cf08fec1-e641-47b7-90fa-6b41981bce31)
 
 
 # No 5
-![Screenshot (1)](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment-/assets/94272100/5f773e87-23b9-407e-9991-5d1659699b22)
+![no5](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/9ad1437b-73cc-4026-987d-7469e9c72025)
 
 
 # No 6
-![image](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment-/assets/94272100/1ef24e06-c383-494f-9ad9-d12df568da89)
+![no6-1](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/3f535cff-576c-4dc5-83d2-d4e201a871ef)
+  
+![no6-2](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/53f934d3-37ed-4b32-bf43-c60a95ca4335)
 
 
 # No 7
