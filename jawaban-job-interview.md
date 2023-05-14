@@ -19,7 +19,7 @@
     - Exit (Class Menu)
 
 # No 3
-Pemrograman yang dipisahkan menjadi kelas-kelas agar lebih mudah dibaca dan digunakan.
+Pemrograman yang dimana program dipisahkan menjadi kelas-kelas agar lebih mudah dibaca dan digunakan.
 
 # No 4
 ![no4](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/cf08fec1-e641-47b7-90fa-6b41981bce31)
