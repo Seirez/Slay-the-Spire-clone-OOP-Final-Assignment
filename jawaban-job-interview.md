@@ -3,20 +3,20 @@
 
 
 # No 2
-- Main menu
-    - Play
-        - Pilih character
-            - Battle
-                - Pilih card (action)
-                    - Attack (damage)
-                    - Heal
-                    - Block
-                    - Energy consumption
-                - End turn
-                    - Energy reset
-                    - Enemy action
-                - Battle end (player/enemy death)
-    - Exit
+- Main menu (Class Menu)
+    - Play (Class Menu)
+        - Pilih character (Class Menu, Class Character)
+            - Battle (Class Menu, Class Character, Class Enemy, Class Energy, Class NCard)
+                - Pilih card (action) (Class Menu, Class NCard, Class Energy)
+                    - Attack (damage) (Class NCard)
+                    - Heal (Class NCard)
+                    - Block (Class NCard)
+                    - Energy consumption (Class NCard, Class Energy)
+                - End turn (Class Energy)
+                    - Energy reset (Class Energy)
+                    - Enemy action (Class Energy)
+                - Battle end (player/enemy death) (Class Menu)
+    - Exit (Class Menu)
 
 # No 3
 Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam paradigma ini dibungkus dalam kelas-kelas.
@@ -33,7 +33,6 @@ Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam p
 ![no6-1](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/3f535cff-576c-4dc5-83d2-d4e201a871ef)
   
 ![no6-2](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/53f934d3-37ed-4b32-bf43-c60a95ca4335)
-
 
 # No 7
 - Play
