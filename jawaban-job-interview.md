@@ -19,17 +19,20 @@
     - Exit (Class Menu)
 
 # No 3
-Pemrograman yang dimana program dipisahkan menjadi kelas-kelas agar lebih mudah dibaca dan digunakan.
+Pemrograman yang dimana program dipisahkan menjadi kelas-kelas agar lebih mudah dibaca dan digunakan.  
+Digunakan untuk mempermudah pengembangan karena program dipisahkan menjadi kelas-kelas, dimana akan mempermudah pengecekan error.
 
 # No 4
+Enkapsulasi digunakan agar atribut dapat dibungkus dan aman, dimana untuk mengambil dan mengubah atribut perlu menggunakan method get dan set.  
 ![no4](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/cf08fec1-e641-47b7-90fa-6b41981bce31)
 
-
 # No 5
+Abstract class berfungsi sebagai parent class (meng-inherit), dimana class nya memiliki isi yang abstrak dan method yang belum dijelaskan.  
+Class dibuat menjadi abstract agar kita tidak bisa gunakan untuk membuat objek baru.  
 ![no5](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/9ad1437b-73cc-4026-987d-7469e9c72025)
 
-
 # No 6
+Polymorphism merupakan pengubahan suatu method agar dapat menyesuaikan. Dilakukan dengan mengubah isi suatu method atau parameter method tersebut.  
 ![no6-1](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/3f535cff-576c-4dc5-83d2-d4e201a871ef)
   
 ![no6-2](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/53f934d3-37ed-4b32-bf43-c60a95ca4335)
@@ -71,7 +74,6 @@ Pemrograman yang dimana program dipisahkan menjadi kelas-kelas agar lebih mudah 
 
 # No 8
 ![image](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/b400561d-782c-488c-9823-6b315e198636)
-Tambahin semua class yang tidak dipake juga
 
 # No 9
 https://youtu.be/Pr5BJxP3HaU?t=95
