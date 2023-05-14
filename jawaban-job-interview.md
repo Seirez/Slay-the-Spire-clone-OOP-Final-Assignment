@@ -71,6 +71,7 @@ Paradigma pemrograman berdasarkan konsep objek. Semua data dan fungsi di dalam p
 
 # No 8
 ![image](https://github.com/Seirez/Slay-the-Spire-clone-OOP-Final-Assignment/assets/94272100/b400561d-782c-488c-9823-6b315e198636)
+Tambahin semua class yang tidak dipake juga
 
 # No 9
 https://youtu.be/Pr5BJxP3HaU?t=95
